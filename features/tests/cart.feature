@@ -5,9 +5,3 @@ Feature: Tests for Cart Functionality
      When  Click on Cart icon
      Then  Verify Your cart is empty message is shown
 
-  Scenario: User can add any Target's product into the cart
-     Given Open Target main page
-     When  Click on Cart icon
-     Then  Verify Your cart is empty message is shown
-
-

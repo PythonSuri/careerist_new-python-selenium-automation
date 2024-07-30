@@ -40,3 +40,9 @@ Feature: Target main page search tests
     And     Confirm Add to Cart button from side navigation
     And     Open cart page
     Then    Verify cart contains 1 item(s)
+
+
+  Scenario: Verify that user can see product names and images
+    Given Open target main page
+    When Search for PlayStation
+    Then Verify that every product has a name and an image
