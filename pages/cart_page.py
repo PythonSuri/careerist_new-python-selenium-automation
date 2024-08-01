@@ -9,8 +9,8 @@ class CartPage(Page):
 
 
 class CartPage(Page):
-    CART_TXT = (By.XPATH, "//h1[text()='Your cart is empty']")
+    CART_EMPTY_MSG = (By.XPATH, "//h1[text()='Your cart is empty']")
 
-    def verify_cart_message(self):
-        actual_text = self.driver.find_element(*self.CART_TXT).text
-        assert 'Your cart is empty' in actual_text, f'Expected "Your cart is empty" not in actual {actual_text}'
+    def verify_cart_empty(self):
+        self.wait_for_element_appear(*self.CART_EMPTY_MSG)
+        self.verify_text('Your cart is empty', *self.CART_EMPTY_MSG)

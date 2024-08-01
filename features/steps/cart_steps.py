@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from behave import then, when
+
 from time import sleep
 
 
@@ -29,13 +30,10 @@ def verify_cart_items(context, amount):
     assert amount in cart_summary, f'Expected {amount} items but got {cart_summary}'
 
 
-
 @then('Verify Your cart is empty message is shown')
 def verify_cart_message(context):
-    #expected_text = 'Your cart is empty'
-    #actual_text = context.driver.find_element(By.XPATH, "//h1[text()='Your cart is empty']").text
-    #assert expected_text in actual_text, f'Expected text {expected_text} is not in actual text {actual_text}'
-    context.app.header.click_cart_icon()
+    context.app.cart_page.verify_cart_empty()
+
 
 @then("Verify 'Your cart is empty' message is shown")
 def verify_cart_empty(context):

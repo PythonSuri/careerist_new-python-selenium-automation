@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from behave import then, when
+
 from time import sleep
 
 
@@ -35,12 +36,12 @@ def side_nav_click_add_to_cart(context):
 
 @then('Verify search results shown for {expected_product}')
 def verify_search_results(context, expected_product):
-    context.app.search_results_page.verify_text()
+    context.app.search_results_page.verify_search_results(expected_product)
 
 
 @then('Verify correct search results URL opens for {expected_product}')
 def verify_url(context, expected_product):
-    context.app.search_results_page.verify_url()
+    context.app.search_results_page.verify_product_in_url(expected_product)
 
 
 @then('Verify that every product has a name and an image')

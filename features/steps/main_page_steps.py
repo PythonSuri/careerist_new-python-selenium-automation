@@ -10,12 +10,13 @@ def open_target(context):
 
 @when('Search for {product}')
 def search_product(context, product):
-    context.app.header.search_product()
+    print('step layer:', product)
+    context.app.header.search_product(product)
 
 
 @when('Click on Cart icon')
 def click_cart_icon(context):
-    context.driver.find_element(By.XPATH, "//div[@data-test='@web/CartIcon']").click()
+    context.app.header.click_cart_icon()
 
 
 @then('Verify header in shown')
@@ -29,5 +30,9 @@ def verify_header_links_amount(context, number):
     links = context.driver.find_elements(By.CSS_SELECTOR, "[id*='utilityNav']")
     assert len(links) == number, f'Expected {number} links but got {len(links)}'
 
+    for i in range(len(links)):
+        links = context.driver.find_elements(By.CSS_SELECTOR, "[id*='utilityNav']")
+        links[i].click()
+        sleep(4)
 
 
