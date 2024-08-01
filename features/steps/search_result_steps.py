@@ -7,10 +7,6 @@ from behave import then, when
 from time import sleep
 
 
-ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
-SIDE_NAV_PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] h4")
-SIDE_NAV_ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [id*='addToCart']")
-ADDED_TO_CART_MSG = (By.XPATH, "//*[@data-test='modal-drawer-heading']//span[text()='Added to cart']")
 LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
 PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
 PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
@@ -18,20 +14,17 @@ PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
 
 @when('Click on Add to Cart button')
 def click_add_to_cart(context):
-    context.driver.find_element(*ADD_TO_CART_BTN).click()  # always clicks on 1st Add to cart btn
-    context.driver.wait.until(EC.visibility_of_element_located(SIDE_NAV_PRODUCT_NAME))
+    context.app.header.click_add_to_cart()
 
 
 @when('Store product name')
 def store_product_name(context):
-    context.product_name = context.driver.find_element(*SIDE_NAV_PRODUCT_NAME).text
-    print(f'Product stored: {context.product_name}')
+    context.app.header.store_product_name()
 
 
 @when('Confirm Add to Cart button from side navigation')
 def side_nav_click_add_to_cart(context):
-    context.driver.find_element(*SIDE_NAV_ADD_TO_CART_BTN).click()
-    context.driver.wait.until(EC.visibility_of_element_located(ADDED_TO_CART_MSG))
+    context.app.header.side_nav_click_add_to_cart()
 
 
 @then('Verify search results shown for {expected_product}')
