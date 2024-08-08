@@ -5,33 +5,51 @@ from behave import when, then
 from selenium.webdriver.common.by import By
 from time import sleep
 
-
-SEARCH_RESULT = (By.CSS_SELECTOR, "[id='cContainerId_info'][role='status']")
+SEARCH_BAR = (By.CSS_SELECTOR, "[placeholder='search help'][type='text']")
+SEARCH_HLP_BTN = (By.XPATH, "//*[@alt='search']")
+SEARCH_RETURNS_TXT = (By.XPATH, "//h2[@class='searchResultHead']")
 
 
 @given('Open target help page')
 def open_help_page(context):
-    context.driver.get('https://help.target.com/help/')
+    context.app.help_page.open()
 
 
-@then('Verify Target Help title')
-def verify_target_help_title(context):
-    context.driver.find_element(By.XPATH, "//h2[contains(text(),'Target Help')]")
+@given('Open Help page for Returns')
+def click_cart(context):
+    context.app.help_page.open_help_returns()
+
+
+@when('Select Help topic {option}')
+def select_topic(context, option):
+    context.app.help_page.select_topic(option)
 
 
 @when('Text {question} in search bar')
 def text_in_search_bar(context, question):
-    context.driver.find_element(By.CSS_SELECTOR, "[placeholder='search help'][type='text']").send_keys(question)
-    context.driver.find_element(By.XPATH, "//*[@alt='search']").click()
-    context.driver.wait.until(EC.presence_of_all_elements_located(SEARCH_RESULT))
+    context.driver.find_element(*SEARCH_BAR).send_keys(question)
+    context.driver.find_element(*SEARCH_HLP_BTN).click()
+    context.driver.wait.until(EC.presence_of_all_elements_located(SEARCH_RETURNS_TXT))
+
+
+@then('Verify Target Help title')
+def verify_target_help_title(context):
+    context.app.help_page.verify_target_help_title()
+
+
+@then('Verify help {expected_text} page opened')
+def verify_help_page_header(context, expected_text):
+    context.app.help_page.verify_header(expected_text)
+
+#
+# @then('Verify help Current promotions page opened')
+# def verify_help_page_header_promotions(context):
+#     context.app.help_page.verify_promotions()
 
 
 @then('Verify search returns {relevant_result}')
 def verify_search_returns(context, relevant_result):
-    actual_text = context.driver.find_element(By.XPATH, "//h2[@class='searchResultHead']").text
-
-    assert relevant_result in actual_text, f'Expected {relevant_result} is not in actual {actual_text}'
-    sleep(4)
+    context.app.help_page.verify_search_returns(relevant_result)
 
 
 @then('Verify page displays {number} help boxes')

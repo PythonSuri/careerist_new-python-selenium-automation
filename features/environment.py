@@ -43,16 +43,16 @@ def browser_init(context, scenario_name):
 
     # BROWSERSTACK ##
     # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-    bs_user = 'suriaziz_cDPzFk'
-    bs_key = 'CNhLSuXeLXzsFFjLBuqf'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-
-    options = Options()
-    bstack_options = {
-        'browserName': 'chrome'
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # bs_user = 'suriaziz_cDPzFk'
+    # bs_key = 'CNhLSuXeLXzsFFjLBuqf'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     'browserName': 'chrome'
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)

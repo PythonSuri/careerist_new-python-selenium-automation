@@ -7,11 +7,6 @@ from selenium.webdriver.common.by import By
 from time import sleep
 
 
-#@given('Open Sign In page')
-#def open_sign_in_page(context):
-#    context.app.sign_in_page.open_sign_in_page()
-
-
 @when('Store original window')
 def store_original_window(context):
     context.original_window = context.app.sign_in_page.get_current_window()
@@ -46,6 +41,31 @@ def click_sign_in_icon(context):
 @when('From right side navigation menu click Sign In')
 def click_side_nav_icon(context):
     context.app.header.click_side_nav_icon()
+
+
+@when('Enter an invalid email and password combination')
+def enter_credentials(context):
+    context.app.sign_in_page.enter_credentials()
+
+
+@when('Enter a valid email and password combination')
+def enter_credentials(context):
+    context.app.sign_in_page.enter_credentials()
+
+
+@when('Click on Sign in with password')
+def click_sign_in_w_password(context):
+    context.app.sign_in_page.click_sign_in_w_password()
+
+
+@then('''Verify "We can't find your account." message is shown''')
+def verify_login_error_msg(context):
+    context.app.sign_in_page.verify_login_error_msg()
+
+
+@then('Verify user is logged in')
+def verify_logged_user(context):
+    context.app.sign_in_page.verify_logged_user()
 
 
 @then('Verify Sign In form opened')

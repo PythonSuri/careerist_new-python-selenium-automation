@@ -1,8 +1,8 @@
-Feature: Tests for target help page
+Feature: Tests for target Help page
 
   Scenario: Verify Target Help title
-    Given  Open Target help page
-    Then   Verify target help title
+    Given   Open Target help page
+    Then    Verify target help title
 
 
   Scenario Outline: Verify search help functionality
@@ -23,3 +23,22 @@ Feature: Tests for target help page
  Scenario: Verify page shows correct number of info cells
     Given  Open Target help page
     Then   Verify page shows 3 info cells
+
+
+  Scenario: User can select Help topic Promotions & Coupons
+    Given   Open Help page for Returns
+    Then    Verify help Returns page opened
+    When    Select Help topic Promotions & Coupons
+    Then    Verify help Current promotions page opened
+
+  Scenario: User can select Help topic Target Circle
+    Given   Open Help page for Returns
+    Then    Verify help Returns page opened
+    When    Select Help topic Target Circle™
+    Then    Verify help About Target Circle page opened
+
+  Scenario: User can select Help topic Target Circle
+    Given   Open Help page for Returns
+    Then    Verify help Returns page opened
+    When    Select Help topic Delivery & Pickup
+    Then    Verify help Drive Up & Order Pickup page opened

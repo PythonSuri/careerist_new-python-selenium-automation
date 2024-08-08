@@ -1,6 +1,4 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from behave import then, when
 
@@ -25,6 +23,16 @@ def store_product_name(context):
 @when('Confirm Add to Cart button from side navigation')
 def side_nav_click_add_to_cart(context):
     context.app.header.side_nav_click_add_to_cart()
+
+
+@when('Hover favorites icon')
+def hover_fav_icon(context):
+    context.app.search_results_page.hover_fav_icon()
+
+
+@then('Favorites tooltip is shown')
+def verify_fav_tooltip(context):
+    context.app.search_results_page.verify_fav_tooltip()
 
 
 @then('Verify search results shown for {expected_product}')

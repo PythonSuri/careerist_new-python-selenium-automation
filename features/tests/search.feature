@@ -7,13 +7,13 @@ Feature: Target main page search tests
     Then   Verify correct search results URL opens for coffee
 
 
-  Scenario: User can search for air fryer
+  Scenario: User can search for chair
     Given  Open Target main page
     When   Search for chair
     Then   Verify search results shown for chair
     Then   Verify correct search results URL opens for chair
 
-  Scenario: User can search for area rug
+  Scenario: User can search for ipad
     Given  Open Target main page
     When   Search for ipad
     Then   Verify search results shown for ipad
@@ -34,7 +34,7 @@ Feature: Target main page search tests
 
   Scenario: User can add a product to cart
     Given   Open target main page
-    When    Search for postcard
+    When    Search for tea
     And     Click on Add to Cart button
     And     Store product name
     And     Confirm Add to Cart button from side navigation
@@ -43,6 +43,13 @@ Feature: Target main page search tests
 
 
   Scenario: Verify that user can see product names and images
-    Given Open target main page
-    When Search for PlayStation
-    Then Verify that every product has a name and an image
+    Given   Open target main page
+    When    Search for PlayStation
+    Then    Verify that every product has a name and an image
+
+
+  Scenario: User can see favorites tooltip for search results
+    Given   Open target main page
+    When    Search for tea
+    And     Hover favorites icon
+    Then    Favorites tooltip is shown
