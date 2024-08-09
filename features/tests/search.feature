@@ -1,5 +1,6 @@
 Feature: Target main page search tests
 
+
   Scenario: User can search for coffee
     Given  Open Target main page
     When   Search for coffee
@@ -13,6 +14,7 @@ Feature: Target main page search tests
     Then   Verify search results shown for chair
     Then   Verify correct search results URL opens for chair
 
+  @smoke
   Scenario: User can search for ipad
     Given  Open Target main page
     When   Search for ipad

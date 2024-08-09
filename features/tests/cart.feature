@@ -1,5 +1,6 @@
 Feature: Tests for Cart Functionality
 
+  @smoke @regression
   Scenario: User can see message by clicking on the cart icon
      Given Open Target main page
      When  Click on Cart icon
